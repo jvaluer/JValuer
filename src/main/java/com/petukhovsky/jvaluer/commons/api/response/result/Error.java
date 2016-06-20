@@ -1,4 +1,4 @@
-package com.petukhovsky.jvaluer.commons.api.response;
+package com.petukhovsky.jvaluer.commons.api.response.result;
 
 /**
  * Created by Arthur Petukhovsky on 6/13/2016.

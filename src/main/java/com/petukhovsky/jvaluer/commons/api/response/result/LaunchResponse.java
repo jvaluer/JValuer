@@ -1,11 +1,12 @@
-package com.petukhovsky.jvaluer.commons.api.response;
+package com.petukhovsky.jvaluer.commons.api.response.result;
 
+import com.petukhovsky.jvaluer.commons.api.response.TestInfo;
 import com.petukhovsky.jvaluer.commons.compiler.CompilationResult;
 
 /**
  * Created by Arthur Petukhovsky on 6/20/2016.
  */
-public class LaunchResponse {
+public class LaunchResponse extends Response {
     private TestInfo test;
     private CompilationResult compile;
 
