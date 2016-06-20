@@ -1,7 +1,7 @@
 package com.petukhovsky.jvaluer.commons.checker;
 
-import com.petukhovsky.jvaluer.test.TestData;
-import com.petukhovsky.jvaluer.util.FastScanner;
+import com.petukhovsky.jvaluer.commons.data.TestData;
+import com.petukhovsky.jvaluer.commons.util.FastScanner;
 
 import java.util.Objects;
 

@@ -1,5 +1,7 @@
 package com.petukhovsky.jvaluer.commons.compiler;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -8,7 +10,9 @@ import java.nio.file.Path;
  */
 public class CompilationResult {
 
+    @JsonIgnore
     private Path exe;
+
     private String comment;
     private boolean success;
 

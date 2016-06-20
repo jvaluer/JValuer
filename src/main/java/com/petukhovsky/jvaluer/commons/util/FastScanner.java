@@ -1,6 +1,6 @@
 package com.petukhovsky.jvaluer.commons.util;
 
-import com.petukhovsky.jvaluer.test.TestData;
+import com.petukhovsky.jvaluer.commons.data.TestData;
 
 import java.io.*;
 

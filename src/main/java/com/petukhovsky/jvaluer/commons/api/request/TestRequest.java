@@ -12,7 +12,7 @@ public class TestRequest {
     @JsonProperty("package")
     private PackageInfo packageInfo;
 
-    private SingleRunInfo singleRun;
+    private LaunchInfo launchInfo;
 
     public TestRequest() {
     }
@@ -41,11 +41,11 @@ public class TestRequest {
         this.packageInfo = packageInfo;
     }
 
-    public SingleRunInfo getSingleRun() {
-        return singleRun;
+    public LaunchInfo getLaunchInfo() {
+        return launchInfo;
     }
 
-    public void setSingleRun(SingleRunInfo singleRun) {
-        this.singleRun = singleRun;
+    public void setLaunchInfo(LaunchInfo launchInfo) {
+        this.launchInfo = launchInfo;
     }
 }
