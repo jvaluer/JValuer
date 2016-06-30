@@ -5,12 +5,16 @@ package com.petukhovsky.jvaluer.commons.api.request;
  */
 public class LaunchInfo {
     private String inUrl;
+    private long timeout;
+    private String memoryLimit;
 
     public LaunchInfo() {
     }
 
-    public LaunchInfo(String inUrl) {
+    public LaunchInfo(String inUrl, long timeout, String memoryLimit) {
         this.inUrl = inUrl;
+        this.timeout = timeout;
+        this.memoryLimit = memoryLimit;
     }
 
     public String getInUrl() {
@@ -19,5 +23,21 @@ public class LaunchInfo {
 
     public void setInUrl(String inUrl) {
         this.inUrl = inUrl;
+    }
+
+    public long getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(long timeout) {
+        this.timeout = timeout;
+    }
+
+    public String getMemoryLimit() {
+        return memoryLimit;
+    }
+
+    public void setMemoryLimit(String memoryLimit) {
+        this.memoryLimit = memoryLimit;
     }
 }
