@@ -10,8 +10,9 @@ public class SourceInfo {
     public SourceInfo() {
     }
 
-    public SourceInfo(String lang) {
+    public SourceInfo(String lang, String url) {
         this.lang = lang;
+        this.url = url;
     }
 
     public String getLang() {

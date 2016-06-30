@@ -1,7 +1,5 @@
 package com.petukhovsky.jvaluer.commons.api.request;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 /**
  * Created by Arthur Petukhovsky on 6/11/2016.
  */
@@ -9,12 +7,23 @@ public class TestRequest {
     private String type;
     private Submission submission;
 
-    @JsonProperty("package")
     private PackageInfo packageInfo;
 
     private LaunchInfo launchInfo;
 
     public TestRequest() {
+    }
+
+    public TestRequest(PackageInfo packageInfo, Submission submission) {
+        this.packageInfo = packageInfo;
+        this.submission = submission;
+        this.type = "package";
+    }
+
+    public TestRequest(LaunchInfo launchInfo, Submission submission) {
+        this.launchInfo = launchInfo;
+        this.submission = submission;
+        this.type = "launch";
     }
 
     public String getType() {
