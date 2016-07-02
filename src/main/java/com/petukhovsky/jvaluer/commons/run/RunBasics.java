@@ -19,4 +19,20 @@ public class RunBasics {
     public RunInOut getInOut() {
         return inOut;
     }
+
+    public String getIn() {
+        return inOut.getIn();
+    }
+
+    public String getOut() {
+        return inOut.getOut();
+    }
+
+    public Long getMemoryLimit() {
+        return limits.getMemory();
+    }
+
+    public Long getTimeLimit() {
+        return limits.getTime();
+    }
 }
