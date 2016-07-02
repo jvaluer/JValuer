@@ -30,4 +30,8 @@ public class FilesUtils {
             e.printStackTrace();
         }
     }
+
+    public static void deleteDirectory(Path path) {
+
+    }
 }

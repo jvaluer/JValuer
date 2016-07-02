@@ -6,6 +6,7 @@ package com.petukhovsky.jvaluer.commons.api.request;
 public class TestRequest {
     private String type;
     private Submission submission;
+    private String queueId;
 
     private PackageInfo packageInfo;
 
@@ -14,15 +15,17 @@ public class TestRequest {
     public TestRequest() {
     }
 
-    public TestRequest(PackageInfo packageInfo, Submission submission) {
+    public TestRequest(String queueId, PackageInfo packageInfo, Submission submission) {
         this.packageInfo = packageInfo;
         this.submission = submission;
+        this.queueId = queueId;
         this.type = "package";
     }
 
-    public TestRequest(LaunchInfo launchInfo, Submission submission) {
+    public TestRequest(String queueId, LaunchInfo launchInfo, Submission submission) {
         this.launchInfo = launchInfo;
         this.submission = submission;
+        this.queueId = queueId;
         this.type = "launch";
     }
 
@@ -56,5 +59,13 @@ public class TestRequest {
 
     public void setLaunchInfo(LaunchInfo launchInfo) {
         this.launchInfo = launchInfo;
+    }
+
+    public String getQueueId() {
+        return queueId;
+    }
+
+    public void setQueueId(String queueId) {
+        this.queueId = queueId;
     }
 }
