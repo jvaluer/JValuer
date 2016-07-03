@@ -1,6 +1,8 @@
 package com.petukhovsky.jvaluer.commons.compiler;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -20,6 +22,13 @@ public class CompilationResult {
         this.exe = exe;
         this.comment = comment;
         this.success = success;
+    }
+
+    @JsonCreator
+    public CompilationResult(@JsonProperty("comment") String comment, @JsonProperty("success") boolean success) {
+        this.comment = comment;
+        this.success = success;
+        this.exe = null;
     }
 
     public boolean isSuccess() {
