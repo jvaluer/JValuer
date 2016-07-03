@@ -1,6 +1,7 @@
 package com.petukhovsky.jvaluer.commons.run;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -24,18 +25,22 @@ public class RunBasics {
         return inOut;
     }
 
+    @JsonIgnore
     public String getIn() {
         return inOut.getIn();
     }
 
+    @JsonIgnore
     public String getOut() {
         return inOut.getOut();
     }
 
+    @JsonIgnore
     public Long getMemoryLimit() {
         return limits.getMemory();
     }
 
+    @JsonIgnore
     public Long getTimeLimit() {
         return limits.getTime();
     }
