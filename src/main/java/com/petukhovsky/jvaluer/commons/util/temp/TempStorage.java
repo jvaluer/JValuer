@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+
 /**
  * Created by Arthur Petukhovsky on 7/2/2016.
  */
@@ -42,7 +44,7 @@ public class TempStorage {
                     zis.closeEntry();
                     continue;
                 }
-                Files.copy(zis, tempDirectory.resolve(entry.getName()));
+                Files.copy(zis, tempDirectory.resolve(entry.getName()), REPLACE_EXISTING);
                 zis.closeEntry();
             }
         } catch (IOException e) {
