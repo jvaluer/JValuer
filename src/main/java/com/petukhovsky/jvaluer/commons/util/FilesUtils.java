@@ -32,6 +32,13 @@ public class FilesUtils {
     }
 
     public static void deleteDirectory(Path path) {
-
+        try {
+            if (Files.isDirectory(path)) {
+                Files.list(path).forEach(FilesUtils::deleteDirectory);
+            }
+            Files.delete(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
