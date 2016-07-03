@@ -18,8 +18,9 @@ public class TempStorage {
 
     private final Path path;
 
-    public TempStorage(Path path) {
+    public TempStorage(Path path) throws IOException {
         this.path = path;
+        Files.createDirectories(path);
     }
 
     private TempDirectory create(String name) throws IOException {
