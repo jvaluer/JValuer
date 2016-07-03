@@ -1,5 +1,7 @@
 package com.petukhovsky.jvaluer.commons.api.request;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.petukhovsky.jvaluer.commons.run.RunBasics;
 
 /**
@@ -9,7 +11,8 @@ public class LaunchInfo {
     private final String inUrl;
     private final RunBasics basics;
 
-    public LaunchInfo(String inUrl, RunBasics basics) {
+    @JsonCreator
+    public LaunchInfo(@JsonProperty("inUrl") String inUrl, @JsonProperty("basics") RunBasics basics) {
         this.inUrl = inUrl;
         this.basics = basics;
     }

@@ -1,5 +1,8 @@
 package com.petukhovsky.jvaluer.commons.run;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by Arthur Petukhovsky on 7/3/2016.
  */
@@ -7,7 +10,8 @@ public class RunInOut {
     private final String in;
     private final String out;
 
-    public RunInOut(String in, String out) {
+    @JsonCreator
+    public RunInOut(@JsonProperty("in") String in, @JsonProperty("out") String out) {
         if (in == null) throw new IllegalArgumentException("In can't be null");
         if (out == null) throw new IllegalArgumentException("Out can't be null");
         if (in.isEmpty()) throw new IllegalArgumentException("In file can't be empty");
