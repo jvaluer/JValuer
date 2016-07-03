@@ -1,5 +1,9 @@
 package com.petukhovsky.jvaluer.commons.run;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by Arthur on 12/18/2015.
  */
@@ -13,6 +17,26 @@ public class RunInfo {
     private String comment;
 
     private RunInfo() {
+    }
+
+    @JsonCreator
+    @JsonIgnoreProperties({"timeString", "memoryString"})
+    public static RunInfo jsonDeserialize(@JsonProperty("runVerdict") RunVerdict runVerdict,
+                                          @JsonProperty("exitCode") int exitCode,
+                                          @JsonProperty("userTime") int userTime,
+                                          @JsonProperty("kernelTime") int kernelTime,
+                                          @JsonProperty("passedTime") int passedTime,
+                                          @JsonProperty("consumedMemory") int consumedMemory,
+                                          @JsonProperty("comment") String comment) {
+        RunInfo runInfo = new RunInfo();
+        runInfo.runVerdict = runVerdict;
+        runInfo.exitCode = exitCode;
+        runInfo.userTime = userTime;
+        runInfo.kernelTime = kernelTime;
+        runInfo.passedTime = passedTime;
+        runInfo.consumedMemory = consumedMemory;
+        runInfo.comment = comment;
+        return runInfo;
     }
 
     public static RunInfo crashed(String comment) {
