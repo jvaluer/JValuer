@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Created by Arthur on 12/18/2015.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RunInfo {
     private RunVerdict runVerdict;
     private int exitCode;
@@ -20,7 +21,6 @@ public class RunInfo {
     }
 
     @JsonCreator
-    @JsonIgnoreProperties({"timeString", "memoryString"})
     public static RunInfo jsonDeserialize(@JsonProperty("runVerdict") RunVerdict runVerdict,
                                           @JsonProperty("exitCode") int exitCode,
                                           @JsonProperty("userTime") int userTime,
