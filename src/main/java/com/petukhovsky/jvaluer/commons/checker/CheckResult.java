@@ -4,9 +4,9 @@ package com.petukhovsky.jvaluer.commons.checker;
  * Created by Arthur on 12/19/2015.
  */
 public class CheckResult {
-    private boolean isCorrect;
-    private double result;
-    private String comment;
+    private final boolean isCorrect;
+    private final double result;
+    private final String comment;
 
     public CheckResult(boolean isCorrect, String comment) {
         this.isCorrect = isCorrect;

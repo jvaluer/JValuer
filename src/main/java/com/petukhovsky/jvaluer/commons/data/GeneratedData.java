@@ -9,7 +9,7 @@ import java.nio.file.Path;
  */
 public class GeneratedData extends PathData {
 
-    private RunInfo info;
+    private final RunInfo info;
 
     public GeneratedData(Path path, RunInfo info) {
         super(path);

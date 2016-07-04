@@ -15,6 +15,7 @@ public class LaunchResponse extends Response {
 
     @JsonCreator
     public LaunchResponse(@JsonProperty("run") RunInfo run, @JsonProperty("out") String out, @JsonProperty("compile") CompilationResult compile) {
+        super(null);
         this.run = run;
         this.out = out;
         this.compile = compile;

@@ -20,9 +20,9 @@ public class RunnableCompiler extends Compiler {
 
     private static Logger logger = Logger.getLogger(RunnableCompiler.class.getName());
 
-    private String exe;
-    private String pattern;
-    private int timeout;
+    private final String exe;
+    private final String pattern;
+    private final int timeout;
 
     public RunnableCompiler(String exe, String pattern) {
         this(exe, pattern, 60);

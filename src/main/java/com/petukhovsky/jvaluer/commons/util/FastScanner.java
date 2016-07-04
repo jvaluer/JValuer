@@ -11,11 +11,12 @@ public class FastScanner implements Closeable, AutoCloseable {
 
     final static int BUFFER_SIZE = 65536;
 
-    BufferedReader br;
-    char[] buf = new char[BUFFER_SIZE];
-    int len = 0;
-    int it = 0;
-    boolean end = false;
+    private final BufferedReader br;
+
+    private char[] buf = new char[BUFFER_SIZE];
+    private int len = 0;
+    private int it = 0;
+    private boolean end = false;
 
     public FastScanner(TestData testData) {
         this(testData.openInputStream());
@@ -25,11 +26,11 @@ public class FastScanner implements Closeable, AutoCloseable {
         br = new BufferedReader(new InputStreamReader(is), BUFFER_SIZE);
     }
 
-    boolean delim(char c) {
+    private boolean isDelimiter(char c) {
         return c == ' ' || c == '\n' || c == '\r';
     }
 
-    void fillBuffer() {
+    private void fillBuffer() {
         try {
             len = br.read(buf);
         } catch (IOException e) {
@@ -37,7 +38,7 @@ public class FastScanner implements Closeable, AutoCloseable {
         }
     }
 
-    void ensureBuffer() {
+    private void ensureBuffer() {
         if (it == len) {
             it = 0;
             fillBuffer();
@@ -45,11 +46,11 @@ public class FastScanner implements Closeable, AutoCloseable {
         }
     }
 
-    void moveNext() {
+    private void moveNext() {
         while (!end) {
             ensureBuffer();
-            if (!delim(buf[it])) return;
-            while (it < len && delim(buf[it])) it++;
+            if (!isDelimiter(buf[it])) return;
+            while (it < len && isDelimiter(buf[it])) it++;
         }
     }
 
@@ -65,10 +66,10 @@ public class FastScanner implements Closeable, AutoCloseable {
         StringBuilder sb = new StringBuilder();
         while (!end) {
             int l = it;
-            while (++it < len && !delim(buf[it])) ;
+            while (++it < len && !isDelimiter(buf[it])) ;
             sb.append(buf, l, it - l);
             ensureBuffer();
-            if (delim(buf[it])) break;
+            if (isDelimiter(buf[it])) break;
         }
         return sb.toString();
     }
@@ -82,12 +83,12 @@ public class FastScanner implements Closeable, AutoCloseable {
         int result = 0;
         while (!end) {
             int l = it;
-            while (it < len && !delim(buf[it])) {
+            while (it < len && !isDelimiter(buf[it])) {
                 result = (result * 10) + buf[it] - '0';
                 it++;
             }
             ensureBuffer();
-            if (end || delim(buf[it])) break;
+            if (end || isDelimiter(buf[it])) break;
         }
         return result;
     }
@@ -101,14 +102,18 @@ public class FastScanner implements Closeable, AutoCloseable {
         long result = 0;
         while (!end) {
             int l = it;
-            while (it < len && !delim(buf[it])) {
+            while (it < len && !isDelimiter(buf[it])) {
                 result = (result * 10) + buf[it] - '0';
                 it++;
             }
             ensureBuffer();
-            if (delim(buf[it])) break;
+            if (isDelimiter(buf[it])) break;
         }
         return result;
+    }
+
+    public boolean available() {
+        return !end;
     }
 
     public void close() {

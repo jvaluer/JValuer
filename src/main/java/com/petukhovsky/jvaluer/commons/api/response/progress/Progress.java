@@ -4,9 +4,9 @@ package com.petukhovsky.jvaluer.commons.api.response.progress;
  * Created by Arthur Petukhovsky on 6/21/2016.
  */
 public class Progress {
-    private String tokenId;
-    private String submissionId;
-    private String act;
+    private final String tokenId;
+    private final String submissionId;
+    private final String act;
 
     public Progress(String tokenId, String submissionId, String act) {
         this.tokenId = tokenId;
@@ -18,23 +18,11 @@ public class Progress {
         return tokenId;
     }
 
-    public void setTokenId(String tokenId) {
-        this.tokenId = tokenId;
-    }
-
     public String getSubmissionId() {
         return submissionId;
     }
 
-    public void setSubmissionId(String submissionId) {
-        this.submissionId = submissionId;
-    }
-
     public String getAct() {
         return act;
-    }
-
-    public void setAct(String act) {
-        this.act = act;
     }
 }

@@ -12,7 +12,7 @@ import java.nio.file.StandardCopyOption;
  */
 public class StringData extends TestData {
 
-    String data;
+    private final String data;
 
     public StringData(String data) {
         this.data = data;

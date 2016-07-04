@@ -4,19 +4,17 @@ package com.petukhovsky.jvaluer.commons.api.request;
  * Created by Arthur Petukhovsky on 6/11/2016.
  */
 public class TestRequest {
-    private String type;
-    private Submission submission;
-    private String queueId;
+    private final String type;
+    private final Submission submission;
+    private final String queueId;
 
-    private PackageInfo packageInfo;
+    private final PackageInfo packageInfo;
 
-    private LaunchInfo launchInfo;
-
-    public TestRequest() {
-    }
+    private final LaunchInfo launchInfo;
 
     public TestRequest(String queueId, PackageInfo packageInfo, Submission submission) {
         this.packageInfo = packageInfo;
+        this.launchInfo = null;
         this.submission = submission;
         this.queueId = queueId;
         this.type = "package";
@@ -24,6 +22,7 @@ public class TestRequest {
 
     public TestRequest(String queueId, LaunchInfo launchInfo, Submission submission) {
         this.launchInfo = launchInfo;
+        this.packageInfo = null;
         this.submission = submission;
         this.queueId = queueId;
         this.type = "launch";
@@ -33,39 +32,19 @@ public class TestRequest {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public Submission getSubmission() {
         return submission;
-    }
-
-    public void setSubmission(Submission submission) {
-        this.submission = submission;
     }
 
     public PackageInfo getPackageInfo() {
         return packageInfo;
     }
 
-    public void setPackageInfo(PackageInfo packageInfo) {
-        this.packageInfo = packageInfo;
-    }
-
     public LaunchInfo getLaunchInfo() {
         return launchInfo;
     }
 
-    public void setLaunchInfo(LaunchInfo launchInfo) {
-        this.launchInfo = launchInfo;
-    }
-
     public String getQueueId() {
         return queueId;
-    }
-
-    public void setQueueId(String queueId) {
-        this.queueId = queueId;
     }
 }

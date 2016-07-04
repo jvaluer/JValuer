@@ -10,7 +10,7 @@ import java.nio.file.Path;
  */
 public class PathData extends TestData {
 
-    private Path path;
+    private final Path path;
 
     public PathData(Path path) {
         this.path = path;
