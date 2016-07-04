@@ -62,7 +62,7 @@ public class RunnableCompiler extends Compiler {
             bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             comment += bufferedReader.lines().collect(Collectors.joining("\n"));
             bufferedReader.close();
-            return new CompilationResult(output, comment, true);
+            return new CompilationResult(output, comment, Files.exists(output));
         } catch (IOException | InterruptedException e) {
             logger.log(Level.SEVERE, "Compilation failed", e);
             return new CompilationResult(output, "Something went wrong", false);
