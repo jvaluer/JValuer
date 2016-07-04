@@ -1,6 +1,6 @@
 package com.petukhovsky.jvaluer.commons.util.temp;
 
-import com.petukhovsky.jvaluer.commons.util.FilesUtils;
+import org.apache.commons.io.FileUtils;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -39,6 +39,6 @@ public class TempDirectory implements Closeable, AutoCloseable {
 
     @Override
     public void close() throws IOException {
-        FilesUtils.deleteDirectory(root);
+        FileUtils.deleteDirectory(root.toFile());
     }
 }
