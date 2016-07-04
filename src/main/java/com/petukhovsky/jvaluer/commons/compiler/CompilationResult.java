@@ -31,8 +31,12 @@ public class CompilationResult {
         this.exe = null;
     }
 
-    public boolean isSuccess() {
+    public boolean exists() {
         return exe != null && Files.exists(exe) && success;
+    }
+
+    public boolean isSuccess() {
+        return success;
     }
 
     public Path getExe() {
