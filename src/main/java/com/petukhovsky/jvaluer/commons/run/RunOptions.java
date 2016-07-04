@@ -13,6 +13,7 @@ import java.util.Map;
 public class RunOptions {
 
     private final Path folder;
+    private final Path exe;
     private final Path stdinForward;
     private final Path stdoutForward;
     private final Path stderrForward;
@@ -24,11 +25,12 @@ public class RunOptions {
 
     private final Map<String, Object> custom;
 
-    public RunOptions(Path folder, Path stdinForward, Path stdoutForward, Path stderrForward, Path dllInject, boolean trusted, UserAccount userAccount, RunLimits limits, String args, Map<String, Object> custom) {
+    public RunOptions(Path folder, Path exe, Path stdoutForward, Path stderrForward, Path dllInject, boolean trusted, UserAccount userAccount, RunLimits limits, String args, Map<String, Object> custom, Path stdinForward) {
         if (limits == null) throw new IllegalArgumentException("limits can't be null");
         if (args == null) throw new IllegalArgumentException("args can't be null");
         if (custom == null) throw new IllegalArgumentException("custom args can't be null");
         this.folder = folder;
+        this.exe = exe;
         this.stdinForward = stdinForward;
         this.stdoutForward = stdoutForward;
         this.stderrForward = stderrForward;
@@ -41,17 +43,17 @@ public class RunOptions {
     }
 
     public RunOptions() {
-        this(null, null, null, null, null, false, null, RunLimits.unlimited(), "", new HashMap<>());
+        this(null, null, null, null, null, false, null, RunLimits.unlimited(), "", new HashMap<>(), null);
     }
 
     public RunOptions setCustom(Map<String, Object> custom) {
-        return new RunOptions(folder, stdinForward, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom);
+        return new RunOptions(folder, exe, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom, stdinForward);
     }
 
     public RunOptions putCustomArg(String key, Object value) {
         Map<String, Object> custom = new HashMap<>(this.custom);
         custom.put(key, value);
-        return new RunOptions(folder, stdinForward, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom);
+        return new RunOptions(folder, exe, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom, stdinForward);
     }
 
     public Path getFolder() {
@@ -59,7 +61,7 @@ public class RunOptions {
     }
 
     public RunOptions setFolder(Path folder) {
-        return new RunOptions(folder, stdinForward, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom);
+        return new RunOptions(folder, exe, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom, stdinForward);
     }
 
     public Path getStdinForward() {
@@ -67,7 +69,7 @@ public class RunOptions {
     }
 
     public RunOptions setStdinForward(Path stdinForward) {
-        return new RunOptions(folder, stdinForward, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom);
+        return new RunOptions(folder, exe, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom, stdinForward);
     }
 
     public Path getStdoutForward() {
@@ -75,7 +77,7 @@ public class RunOptions {
     }
 
     public RunOptions setStdoutForward(Path stdoutForward) {
-        return new RunOptions(folder, stdinForward, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom);
+        return new RunOptions(folder, exe, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom, stdinForward);
     }
 
     public Path getStderrForward() {
@@ -83,7 +85,7 @@ public class RunOptions {
     }
 
     public RunOptions setStderrForward(Path stderrForward) {
-        return new RunOptions(folder, stdinForward, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom);
+        return new RunOptions(folder, exe, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom, stdinForward);
     }
 
     public Path getDllInject() {
@@ -91,7 +93,7 @@ public class RunOptions {
     }
 
     public RunOptions setDllInject(Path dllInject) {
-        return new RunOptions(folder, stdinForward, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom);
+        return new RunOptions(folder, exe, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom, stdinForward);
     }
 
     public boolean isTrusted() {
@@ -99,7 +101,7 @@ public class RunOptions {
     }
 
     public RunOptions setTrusted(boolean trusted) {
-        return new RunOptions(folder, stdinForward, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom);
+        return new RunOptions(folder, exe, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom, stdinForward);
     }
 
     public UserAccount getUserAccount() {
@@ -107,7 +109,7 @@ public class RunOptions {
     }
 
     public RunOptions setUserAccount(UserAccount userAccount) {
-        return new RunOptions(folder, stdinForward, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom);
+        return new RunOptions(folder, exe, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom, stdinForward);
     }
 
     public RunLimits getLimits() {
@@ -115,7 +117,7 @@ public class RunOptions {
     }
 
     public RunOptions setLimits(RunLimits limits) {
-        return new RunOptions(folder, stdinForward, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom);
+        return new RunOptions(folder, exe, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom, stdinForward);
     }
 
     public String getArgs() {
@@ -123,7 +125,15 @@ public class RunOptions {
     }
 
     public RunOptions setArgs(String args) {
-        return new RunOptions(folder, stdinForward, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom);
+        return new RunOptions(folder, exe, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom, stdinForward);
+    }
+
+    public Path getExe() {
+        return exe;
+    }
+
+    public RunOptions setExe(Path exe) {
+        return new RunOptions(folder, exe, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom, stdinForward);
     }
 
     public Object get(String key) {
