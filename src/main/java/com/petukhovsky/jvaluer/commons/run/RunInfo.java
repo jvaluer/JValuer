@@ -38,7 +38,7 @@ public class RunInfo {
         return new RunInfo(RunVerdict.CRASH, -1, -1, -1, -1, -1, comment);
     }
 
-    public static RunInfo completed(RunVerdict runVerdict, int exitCode, int userTime, int kernelTime, int passedTime, int consumedMemory, String comment) {
+    public static RunInfo completed(RunVerdict runVerdict, int exitCode, long userTime, long kernelTime, long passedTime, long consumedMemory, String comment) {
         return new RunInfo((exitCode != 0 && runVerdict == RunVerdict.SUCCESS) ? RunVerdict.RUNTIME_ERROR : runVerdict,
                 exitCode,
                 userTime,
