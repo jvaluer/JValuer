@@ -13,10 +13,10 @@ import java.nio.file.Path;
 public class CompilationResult {
 
     @JsonIgnore
-    private Path exe;
+    private final Path exe;
 
-    private String comment;
-    private boolean success;
+    private final String comment;
+    private final boolean success;
 
     public CompilationResult(Path exe, String comment, boolean success) {
         this.exe = exe;
