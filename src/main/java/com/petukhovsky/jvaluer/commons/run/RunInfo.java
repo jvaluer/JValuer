@@ -9,54 +9,43 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RunInfo {
-    private RunVerdict runVerdict;
-    private int exitCode;
-    private int userTime;
-    private int kernelTime;
-    private int passedTime;
-    private int consumedMemory;
-    private String comment;
-
-    private RunInfo() {
-    }
+    private final RunVerdict runVerdict;
+    private final int exitCode;
+    private final int userTime;
+    private final int kernelTime;
+    private final int passedTime;
+    private final long consumedMemory;
+    private final String comment;
 
     @JsonCreator
-    public static RunInfo jsonDeserialize(@JsonProperty("runVerdict") RunVerdict runVerdict,
-                                          @JsonProperty("exitCode") int exitCode,
-                                          @JsonProperty("userTime") int userTime,
-                                          @JsonProperty("kernelTime") int kernelTime,
-                                          @JsonProperty("passedTime") int passedTime,
-                                          @JsonProperty("consumedMemory") int consumedMemory,
-                                          @JsonProperty("comment") String comment) {
-        RunInfo runInfo = new RunInfo();
-        runInfo.runVerdict = runVerdict;
-        runInfo.exitCode = exitCode;
-        runInfo.userTime = userTime;
-        runInfo.kernelTime = kernelTime;
-        runInfo.passedTime = passedTime;
-        runInfo.consumedMemory = consumedMemory;
-        runInfo.comment = comment;
-        return runInfo;
+    public RunInfo(@JsonProperty("runVerdict") RunVerdict runVerdict,
+                   @JsonProperty("exitCode") int exitCode,
+                   @JsonProperty("userTime") int userTime,
+                   @JsonProperty("kernelTime") int kernelTime,
+                   @JsonProperty("passedTime") int passedTime,
+                   @JsonProperty("consumedMemory") int consumedMemory,
+                   @JsonProperty("comment") String comment) {
+        this.runVerdict = runVerdict;
+        this.exitCode = exitCode;
+        this.userTime = userTime;
+        this.kernelTime = kernelTime;
+        this.passedTime = passedTime;
+        this.consumedMemory = consumedMemory;
+        this.comment = comment;
     }
 
     public static RunInfo crashed(String comment) {
-        RunInfo info = new RunInfo();
-        info.runVerdict = RunVerdict.CRASH;
-        info.comment = comment;
-        return info;
+        return new RunInfo(RunVerdict.CRASH, -1, -1, -1, -1, -1, comment);
     }
 
     public static RunInfo completed(RunVerdict runVerdict, int exitCode, int userTime, int kernelTime, int passedTime, int consumedMemory, String comment) {
-        RunInfo info = new RunInfo();
-        info.runVerdict = runVerdict;
-        info.exitCode = exitCode;
-        if (exitCode != 0 && info.runVerdict == RunVerdict.SUCCESS) info.runVerdict = RunVerdict.RUNTIME_ERROR;
-        info.userTime = userTime;
-        info.kernelTime = kernelTime;
-        info.passedTime = passedTime;
-        info.consumedMemory = consumedMemory;
-        info.comment = comment;
-        return info;
+        return new RunInfo((exitCode != 0 && runVerdict == RunVerdict.SUCCESS) ? RunVerdict.RUNTIME_ERROR : runVerdict,
+                exitCode,
+                userTime,
+                kernelTime,
+                passedTime,
+                consumedMemory,
+                comment);
     }
 
     public RunVerdict getRunVerdict() {
@@ -79,7 +68,7 @@ public class RunInfo {
         return passedTime;
     }
 
-    public int getConsumedMemory() {
+    public long getConsumedMemory() {
         return consumedMemory;
     }
 
@@ -92,7 +81,7 @@ public class RunInfo {
     }
 
     public String getMemoryString() {
-        int memory = getConsumedMemory();
+        long memory = getConsumedMemory();
         double kb = memory / 1024D;
         double mb = kb / 1024D;
         if (mb < 2D) return String.format("%.2fkb", kb);
