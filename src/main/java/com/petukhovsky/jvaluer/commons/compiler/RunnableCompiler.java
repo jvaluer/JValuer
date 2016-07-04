@@ -1,17 +1,15 @@
 package com.petukhovsky.jvaluer.commons.compiler;
 
 import com.petukhovsky.jvaluer.commons.local.Local;
+import org.apache.commons.io.IOUtils;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 /**
  * Created by petuh on 2/23/2016.
@@ -56,12 +54,8 @@ public class RunnableCompiler extends Compiler {
                 process.destroyForcibly();
                 return new CompilationResult(output, "Time limit exceeded", false);
             }
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-            String comment = bufferedReader.lines().collect(Collectors.joining("\n"));
-            bufferedReader.close();
-            bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            comment += bufferedReader.lines().collect(Collectors.joining("\n"));
-            bufferedReader.close();
+            String comment = IOUtils.toString(process.getErrorStream(), "UTF-8");
+            comment += IOUtils.toString(process.getInputStream(), "UTF-8");
             return new CompilationResult(output, comment, Files.exists(output));
         } catch (IOException | InterruptedException e) {
             logger.log(Level.SEVERE, "Compilation failed", e);

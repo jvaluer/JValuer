@@ -3,6 +3,8 @@ package com.petukhovsky.jvaluer.commons.util;
 import com.petukhovsky.jvaluer.commons.data.TestData;
 
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Arthur on 12/19/2015.
@@ -10,7 +12,7 @@ import java.io.*;
 public class FastScanner implements Closeable, AutoCloseable {
 
     final static int BUFFER_SIZE = 65536;
-
+    private static final Logger log = Logger.getLogger(FastScanner.class.getName());
     private final BufferedReader br;
 
     private char[] buf = new char[BUFFER_SIZE];
@@ -34,7 +36,7 @@ public class FastScanner implements Closeable, AutoCloseable {
         try {
             len = br.read(buf);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.log(Level.WARNING, "can't fill buffer", e);
         }
     }
 
@@ -120,7 +122,7 @@ public class FastScanner implements Closeable, AutoCloseable {
         try {
             br.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.log(Level.WARNING, "can't close FastScanner", e);
         }
     }
 }

@@ -7,11 +7,16 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Arthur Petukhovsky on 7/2/2016.
  */
 public class TempDirectory implements Closeable, AutoCloseable {
+
+    private static final Logger log = Logger.getLogger(TempDirectory.class.getName());
+
     private final Path root;
 
     TempDirectory(Path root) throws IOException {
@@ -26,9 +31,9 @@ public class TempDirectory implements Closeable, AutoCloseable {
     public Path resolve(String suffix) {
         Path path = root.resolve(suffix);
         try {
-            Files.createDirectories(path.getParent());
+            FileUtils.forceMkdirParent(path.toFile());
         } catch (IOException e) {
-            e.printStackTrace();
+            log.log(Level.WARNING, "resolve suffix in TempDirectory", e);
         }
         return path;
     }

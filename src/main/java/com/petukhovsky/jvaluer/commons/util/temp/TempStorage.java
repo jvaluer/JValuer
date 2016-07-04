@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -13,6 +15,8 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
  * Created by Arthur Petukhovsky on 7/2/2016.
  */
 public class TempStorage {
+
+    private static final Logger log = Logger.getLogger(TempStorage.class.getName());
 
     private static final int BUFFER = 2048;
 
@@ -31,7 +35,7 @@ public class TempStorage {
         try {
             return new TempDirectory(Files.createTempDirectory(path, ""));
         } catch (IOException e) {
-            e.printStackTrace();
+            log.log(Level.WARNING, "can't create temp directory", e);
         }
         return null;
     }
@@ -49,7 +53,7 @@ public class TempStorage {
                 zis.closeEntry();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            log.log(Level.WARNING, "can't unzip to temp directory", e);
         }
         return tempDirectory;
     }

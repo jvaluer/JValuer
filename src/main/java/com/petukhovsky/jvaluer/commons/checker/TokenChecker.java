@@ -12,7 +12,7 @@ public class TokenChecker extends Checker {
     @Override
     public CheckResult check(TestData in, TestData answer, TestData out) {
         if (!out.exists()) return new CheckResult(false, "Presentation error");
-        if (!in.exists() || !answer.exists()) return new CheckResult(false, "Internal error - jury has missing files");
+        if (!in.exists() || !answer.exists()) return new CheckResult(false, "Internal error - missing files");
         FastScanner answerScanner = new FastScanner(answer);
         FastScanner outScanner = new FastScanner(out);
         int token = 0;

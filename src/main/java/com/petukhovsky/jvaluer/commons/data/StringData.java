@@ -6,11 +6,15 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Arthur on 12/21/2015.
  */
 public class StringData extends TestData {
+
+    private static final Logger log = Logger.getLogger(StringData.class.getName());
 
     private final String data;
 
@@ -33,12 +37,11 @@ public class StringData extends TestData {
         Path path = null;
         try {
             path = Files.createTempFile("", "");
-            path.toFile().deleteOnExit();
             try (InputStream is = openInputStream()) {
                 Files.copy(is, path, StandardCopyOption.REPLACE_EXISTING);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            log.log(Level.WARNING, "can't create path from string", e);
         }
         return path;
     }
