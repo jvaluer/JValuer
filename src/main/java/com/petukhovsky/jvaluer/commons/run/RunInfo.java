@@ -10,20 +10,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RunInfo {
     private final RunVerdict runVerdict;
-    private final int exitCode;
-    private final int userTime;
-    private final int kernelTime;
-    private final int passedTime;
+    private final long exitCode;
+    private final long userTime;
+    private final long kernelTime;
+    private final long passedTime;
     private final long consumedMemory;
     private final String comment;
 
     @JsonCreator
     public RunInfo(@JsonProperty("runVerdict") RunVerdict runVerdict,
                    @JsonProperty("exitCode") int exitCode,
-                   @JsonProperty("userTime") int userTime,
-                   @JsonProperty("kernelTime") int kernelTime,
-                   @JsonProperty("passedTime") int passedTime,
-                   @JsonProperty("consumedMemory") int consumedMemory,
+                   @JsonProperty("userTime") long userTime,
+                   @JsonProperty("kernelTime") long kernelTime,
+                   @JsonProperty("passedTime") long passedTime,
+                   @JsonProperty("consumedMemory") long consumedMemory,
                    @JsonProperty("comment") String comment) {
         this.runVerdict = runVerdict;
         this.exitCode = exitCode;
@@ -52,19 +52,19 @@ public class RunInfo {
         return runVerdict;
     }
 
-    public int getExitCode() {
+    public long getExitCode() {
         return exitCode;
     }
 
-    public int getUserTime() {
+    public long getUserTime() {
         return userTime;
     }
 
-    public int getKernelTime() {
+    public long getKernelTime() {
         return kernelTime;
     }
 
-    public int getPassedTime() {
+    public long getPassedTime() {
         return passedTime;
     }
 
