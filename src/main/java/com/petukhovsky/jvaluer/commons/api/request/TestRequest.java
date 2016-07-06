@@ -1,5 +1,8 @@
 package com.petukhovsky.jvaluer.commons.api.request;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by Arthur Petukhovsky on 6/11/2016.
  */
@@ -12,7 +15,10 @@ public class TestRequest {
 
     private final LaunchInfo launchInfo;
 
-    public TestRequest(String queueId, PackageInfo packageInfo, Submission submission) {
+    @JsonCreator
+    public TestRequest(@JsonProperty("queueId") String queueId,
+                       @JsonProperty("packageInfo") PackageInfo packageInfo,
+                       @JsonProperty("submission") Submission submission) {
         this.packageInfo = packageInfo;
         this.launchInfo = null;
         this.submission = submission;

@@ -1,5 +1,7 @@
 package com.petukhovsky.jvaluer.commons.api.response;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.petukhovsky.jvaluer.commons.checker.CheckResult;
 import com.petukhovsky.jvaluer.commons.data.TestData;
 import com.petukhovsky.jvaluer.commons.run.RunInfo;
@@ -12,7 +14,8 @@ public class TestInfo {
     private final CheckResult check;
     private final TestData out;
 
-    public TestInfo(RunInfo run, CheckResult check, TestData out) {
+    @JsonCreator
+    public TestInfo(@JsonProperty("run") RunInfo run, @JsonProperty("check") CheckResult check, @JsonProperty("out") TestData out) {
         this.run = run;
         this.check = check;
         this.out = out;

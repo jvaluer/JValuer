@@ -1,5 +1,8 @@
 package com.petukhovsky.jvaluer.commons.api.request;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by Arthur Petukhovsky on 6/13/2016.
  */
@@ -7,7 +10,8 @@ public class SourceInfo {
     private final String lang;
     private final String url;
 
-    public SourceInfo(String lang, String url) {
+    @JsonCreator
+    public SourceInfo(@JsonProperty("lang") String lang, @JsonProperty("url") String url) {
         this.lang = lang;
         this.url = url;
     }
