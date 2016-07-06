@@ -30,8 +30,9 @@ public class TempDirectory implements Closeable, AutoCloseable {
 
     public Path resolve(String suffix) {
         Path path = root.resolve(suffix);
+        Path parent = path.getParent();
         try {
-            FileUtils.forceMkdirParent(path.toFile());
+            Files.createDirectories(parent);
         } catch (IOException e) {
             log.log(Level.WARNING, "resolve suffix in TempDirectory", e);
         }
