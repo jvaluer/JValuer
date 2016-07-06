@@ -30,7 +30,7 @@ public class TempDirectory implements Closeable, AutoCloseable {
 
     public Path resolve(String suffix) {
         Path path = root.resolve(suffix);
-        Path parent = path.getParent();
+        Path parent = path.toAbsolutePath().getParent();
         try {
             Files.createDirectories(parent);
         } catch (IOException e) {
