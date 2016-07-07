@@ -29,11 +29,11 @@ public class TempDirectory implements Closeable, AutoCloseable {
     }
 
     public Path resolve(String suffix) {
-        log.log(Level.WARNING, "try to resolve " + suffix);
+        System.err.println("try to resolve " + suffix);
         Path path = root.resolve(suffix).toAbsolutePath();
-        log.log(Level.WARNING, "resolved path: " + path);
+        System.err.println("resolved path: " + path);
         Path parent = path.getParent();
-        log.log(Level.WARNING, "parent is " + parent);
+        System.err.println("parent is " + parent);
         try {
             Files.createDirectories(parent);
         } catch (IOException e) {
