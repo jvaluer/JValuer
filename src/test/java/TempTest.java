@@ -7,6 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 /**
@@ -26,7 +27,7 @@ public class TempTest {
 
     @Test
     public void testUnzip() throws IOException {
-        Path dir = Files.createTempDirectory("");
+        Path dir = Paths.get("C:\\var\\jvaluer-web\\temp\\");
         Path zip = Files.createTempFile("", ".zip");
         Local.loadResource(zip, "/test.zip");
         TempStorage storage = new TempStorage(dir);

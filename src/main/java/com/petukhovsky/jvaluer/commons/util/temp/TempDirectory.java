@@ -29,11 +29,8 @@ public class TempDirectory implements Closeable, AutoCloseable {
     }
 
     public Path resolve(String suffix) {
-        System.err.println("try to resolve " + suffix);
         Path path = root.resolve(suffix).toAbsolutePath();
-        System.err.println("resolved path: " + path);
         Path parent = path.getParent();
-        System.err.println("parent is " + parent);
         try {
             Files.createDirectories(parent);
         } catch (IOException e) {
@@ -49,5 +46,9 @@ public class TempDirectory implements Closeable, AutoCloseable {
     @Override
     public void close() throws IOException {
         FileUtils.deleteDirectory(root.toFile());
+    }
+
+    public Path resolveQuiet(String name) {
+        return root.resolve(name);
     }
 }
