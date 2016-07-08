@@ -1,7 +1,5 @@
 package com.petukhovsky.jvaluer.commons.util.temp;
 
-import org.apache.commons.io.FileUtils;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -51,9 +49,7 @@ public class TempStorage {
                     zis.closeEntry();
                     continue;
                 }
-                Path file = tempDirectory.resolveQuiet(entry.getName());
-                file = file.getParent();
-                FileUtils.forceMkdir(file.toFile());
+                Path file = tempDirectory.resolve(entry.getName());
                 Files.copy(zis, file, REPLACE_EXISTING);
                 zis.closeEntry();
             }
