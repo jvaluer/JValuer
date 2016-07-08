@@ -29,14 +29,16 @@ public class TempDirectory implements Closeable, AutoCloseable {
     }
 
     public Path resolve(String suffix) {
-        Path path = root.resolve(suffix).toAbsolutePath();
-        Path parent = path.getParent();
+        Path path = getRoot();
+        path = path.resolve(suffix);
+        path = path.toAbsolutePath();
+        path = path.getParent();
         try {
-            Files.createDirectories(parent);
+            Files.createDirectories(path);
         } catch (IOException e) {
             log.log(Level.WARNING, "resolve suffix in TempDirectory", e);
         }
-        return path;
+        return getRoot().resolve(suffix);
     }
 
     public OutputStream openOutputStream(String suffix) throws IOException {
