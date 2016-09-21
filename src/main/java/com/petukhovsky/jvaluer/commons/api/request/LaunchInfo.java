@@ -13,18 +13,20 @@ public class LaunchInfo {
     private final String queueId;
     private final String source;
     private final String sourceLang;
+    private final String completeUrl;
 
     @JsonCreator
     public LaunchInfo(@JsonProperty("input") String input,
                       @JsonProperty("basics") RunBasics basics,
                       @JsonProperty("queueId") String queueId,
                       @JsonProperty("source") String source,
-                      @JsonProperty("sourceLang") String sourceLang) {
+                      @JsonProperty("sourceLang") String sourceLang, String completeUrl) {
         this.input = input;
         this.basics = basics;
         this.queueId = queueId;
         this.source = source;
         this.sourceLang = sourceLang;
+        this.completeUrl = completeUrl;
     }
 
     public String getInput() {
@@ -45,5 +47,9 @@ public class LaunchInfo {
 
     public String getSource() {
         return source;
+    }
+
+    public String getCompleteUrl() {
+        return completeUrl;
     }
 }
