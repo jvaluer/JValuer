@@ -20,7 +20,8 @@ public class LaunchInfo {
                       @JsonProperty("basics") RunBasics basics,
                       @JsonProperty("queueId") String queueId,
                       @JsonProperty("source") String source,
-                      @JsonProperty("sourceLang") String sourceLang, String completeUrl) {
+                      @JsonProperty("sourceLang") String sourceLang,
+                      @JsonProperty("completeUrl") String completeUrl) {
         this.input = input;
         this.basics = basics;
         this.queueId = queueId;
