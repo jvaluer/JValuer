@@ -3,7 +3,7 @@ package com.petukhovsky.jvaluer.commons.api.request;
 /**
  * Created by Arthur Petukhovsky on 6/13/2016.
  */
-public class PackageInfo {
+public class PackageInfo { //TODO
     private final String id;
     private final String revision;
     private final String url;
