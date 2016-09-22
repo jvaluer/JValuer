@@ -14,8 +14,8 @@ public class LaunchResponse {
     private final CompilationResult compile;
     private final Error error;
 
-    @JsonCreator
-    public LaunchResponse(@JsonProperty("run") RunInfo run, @JsonProperty("out") TruncatedOut out, @JsonProperty("compile") CompilationResult compile) {
+
+    public LaunchResponse(RunInfo run, TruncatedOut out, CompilationResult compile) {
         this.run = run;
         this.out = out;
         this.compile = compile;
@@ -23,7 +23,14 @@ public class LaunchResponse {
     }
 
     @JsonCreator
-    public LaunchResponse(@JsonProperty("error") Error error) {
+    public LaunchResponse(@JsonProperty("run") RunInfo run, @JsonProperty("out") TruncatedOut out, @JsonProperty("compile") CompilationResult compile, @JsonProperty("error") Error error) {
+        this.run = run;
+        this.out = out;
+        this.compile = compile;
+        this.error = error;
+    }
+
+    public LaunchResponse(Error error) {
         this.error = error;
         this.run = null;
         this.out = null;
@@ -40,5 +47,9 @@ public class LaunchResponse {
 
     public TruncatedOut getOut() {
         return out;
+    }
+
+    public Error getError() {
+        return error;
     }
 }
