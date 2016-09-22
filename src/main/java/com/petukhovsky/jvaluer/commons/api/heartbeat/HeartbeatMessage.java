@@ -1,5 +1,8 @@
 package com.petukhovsky.jvaluer.commons.api.heartbeat;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.Instant;
 
 /**
@@ -11,7 +14,8 @@ public class HeartbeatMessage {
     private final Instant startTime;
     private final Instant now;
 
-    public HeartbeatMessage(Instant startTime, Instant now, String version, String tokenId) {
+    @JsonCreator
+    public HeartbeatMessage(@JsonProperty("startTime") Instant startTime, @JsonProperty("now") Instant now, @JsonProperty("version") String version, @JsonProperty("tokenId") String tokenId) {
         this.startTime = startTime;
         this.now = now;
         this.version = version;
