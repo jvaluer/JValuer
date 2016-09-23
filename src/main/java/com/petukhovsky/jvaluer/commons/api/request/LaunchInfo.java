@@ -10,7 +10,6 @@ import com.petukhovsky.jvaluer.commons.run.RunBasics;
 public class LaunchInfo {
     private final String input;
     private final RunBasics basics;
-    private final String queueId;
     private final String source;
     private final String sourceLang;
     private final String completeUrl;
@@ -18,13 +17,11 @@ public class LaunchInfo {
     @JsonCreator
     public LaunchInfo(@JsonProperty("input") String input,
                       @JsonProperty("basics") RunBasics basics,
-                      @JsonProperty("queueId") String queueId,
                       @JsonProperty("source") String source,
                       @JsonProperty("sourceLang") String sourceLang,
                       @JsonProperty("completeUrl") String completeUrl) {
         this.input = input;
         this.basics = basics;
-        this.queueId = queueId;
         this.source = source;
         this.sourceLang = sourceLang;
         this.completeUrl = completeUrl;
@@ -36,10 +33,6 @@ public class LaunchInfo {
 
     public RunBasics getBasics() {
         return basics;
-    }
-
-    public String getQueueId() {
-        return queueId;
     }
 
     public String getSourceLang() {
