@@ -1,33 +1,35 @@
 package com.petukhovsky.jvaluer.commons.checker;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by Arthur on 12/19/2015.
  */
 public class CheckResult {
-    private final boolean isCorrect;
+    private final boolean correct;
     private final double result;
     private final String comment;
 
-    public CheckResult(boolean isCorrect, String comment) {
-        this.isCorrect = isCorrect;
-        this.comment = comment;
-        this.result = isCorrect ? 1D : 0D;
+    public CheckResult(boolean correct, String comment) {
+        this(correct, correct ? 1D : 0D, comment);
     }
 
     public CheckResult(double result, String comment) {
         this.result = result;
         this.comment = comment;
-        this.isCorrect = result == 1D;
+        this.correct = result >= 1D;
     }
 
-    public CheckResult(boolean isCorrect, double result, String comment) {
-        this.isCorrect = isCorrect;
+    @JsonCreator
+    public CheckResult(@JsonProperty("correct") boolean correct, @JsonProperty("result") double result, @JsonProperty("comment") String comment) {
+        this.correct = correct;
         this.result = result;
         this.comment = comment;
     }
 
     public boolean isCorrect() {
-        return isCorrect;
+        return correct;
     }
 
     public double getResult() {
