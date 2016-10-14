@@ -1,5 +1,6 @@
 package com.petukhovsky.jvaluer;
 
+import com.petukhovsky.jvaluer.commons.builtin.JValuerBuiltin;
 import com.petukhovsky.jvaluer.commons.compiler.CompilationResult;
 import com.petukhovsky.jvaluer.commons.compiler.Compiler;
 import com.petukhovsky.jvaluer.commons.invoker.Invoker;
@@ -27,4 +28,5 @@ public interface JValuer {
     Languages getLanguages();
     RunInfo invokeDefault(RunOptions options);
     RunInfo invoke(Invoker invoker, RunOptions options);
+    JValuerBuiltin builtin();
 }
