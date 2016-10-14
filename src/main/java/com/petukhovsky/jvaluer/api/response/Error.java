@@ -1,4 +1,4 @@
-package com.petukhovsky.jvaluer.commons.api.response;
+package com.petukhovsky.jvaluer.api.response;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

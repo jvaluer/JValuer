@@ -2,7 +2,7 @@ package com.petukhovsky.jvaluer.commons.test;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.petukhovsky.jvaluer.commons.api.response.TruncatedOut;
+import com.petukhovsky.jvaluer.commons.data.TruncatedOut;
 import com.petukhovsky.jvaluer.commons.checker.CheckResult;
 import com.petukhovsky.jvaluer.commons.run.RunInfo;
 

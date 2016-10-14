@@ -1,4 +1,4 @@
-package com.petukhovsky.jvaluer.commons.api.response;
+package com.petukhovsky.jvaluer.commons.data;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,7 +17,6 @@ public class TruncatedOut {
         this.originalSize = originalSize;
         this.truncatedSize = truncatedSize;
     }
-
 
     public long getOriginalSize() {
         return originalSize;

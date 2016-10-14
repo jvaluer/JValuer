@@ -1,8 +1,9 @@
-package com.petukhovsky.jvaluer.commons.api.response;
+package com.petukhovsky.jvaluer.api.response;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.petukhovsky.jvaluer.commons.compiler.CompilationResult;
+import com.petukhovsky.jvaluer.commons.data.TruncatedOut;
 import com.petukhovsky.jvaluer.commons.run.RunInfo;
 
 /**

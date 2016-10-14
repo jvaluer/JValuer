@@ -1,4 +1,4 @@
-package com.petukhovsky.jvaluer.commons.util;
+package com.petukhovsky.jvaluer.util;
 
 import java.lang.reflect.Field;
 

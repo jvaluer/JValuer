@@ -1,4 +1,4 @@
-package com.petukhovsky.jvaluer.commons.api.heartbeat;
+package com.petukhovsky.jvaluer.api.heartbeat;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

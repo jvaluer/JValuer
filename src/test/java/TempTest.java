@@ -1,6 +1,6 @@
 import com.petukhovsky.jvaluer.commons.local.Local;
-import com.petukhovsky.jvaluer.commons.util.temp.TempDirectory;
-import com.petukhovsky.jvaluer.commons.util.temp.TempStorage;
+import com.petukhovsky.jvaluer.util.temp.TempDirectory;
+import com.petukhovsky.jvaluer.util.temp.TempStorage;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;

@@ -1,4 +1,4 @@
-package com.petukhovsky.jvaluer.commons.util;
+package com.petukhovsky.jvaluer.util;
 
 /**
  * Created by Arthur Petukhovsky on 6/13/2016.

@@ -1,4 +1,4 @@
-package com.petukhovsky.jvaluer.commons.util.temp;
+package com.petukhovsky.jvaluer.util.temp;
 
 import com.petukhovsky.jvaluer.commons.local.Local;
 import org.apache.commons.io.FileUtils;

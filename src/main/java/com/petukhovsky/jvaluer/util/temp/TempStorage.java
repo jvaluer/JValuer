@@ -1,4 +1,4 @@
-package com.petukhovsky.jvaluer.commons.util.temp;
+package com.petukhovsky.jvaluer.util.temp;
 
 import java.io.IOException;
 import java.io.InputStream;
