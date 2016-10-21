@@ -18,7 +18,7 @@ public class CheckResult {
     public CheckResult(double result, String comment) {
         this.result = result;
         this.comment = comment;
-        this.correct = result >= 1D;
+        this.correct = result > 0D;
     }
 
     @JsonCreator
