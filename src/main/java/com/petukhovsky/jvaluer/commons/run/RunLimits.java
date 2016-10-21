@@ -2,6 +2,10 @@ package com.petukhovsky.jvaluer.commons.run;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.petukhovsky.jvaluer.util.string.ValueAndSuffix;
+
+import java.text.ParseException;
+import java.util.Objects;
 
 /**
  * Created by Arthur Petukhovsky on 7/3/2016.
@@ -18,6 +22,14 @@ public class RunLimits {
         this.memory = memory;
     }
 
+    public Long getTime() {
+        return time;
+    }
+
+    public Long getMemory() {
+        return memory;
+    }
+
     public static RunLimits ofMemory(Long memory) {
         return new RunLimits(null, memory);
     }
@@ -30,11 +42,47 @@ public class RunLimits {
         return new RunLimits(null, null);
     }
 
-    public Long getMemory() {
-        return memory;
+    public static RunLimits of(String time, String memory) {
+        return new RunLimits(parseTime(time), parseMemory(memory));
     }
 
-    public Long getTime() {
-        return time;
+    public static Long parseTime(String time) {
+        if (time.isEmpty()) return null;
+        ValueAndSuffix vas = ValueAndSuffix.parse(time);
+        if (vas == null) throw new IllegalArgumentException("bad format");
+        switch (vas.getSuffix().toLowerCase()) {
+            case "ms":
+                return vas.getValue();
+            case "s":
+                return vas.getValue() * 1000L;
+            case "":
+                return vas.getValue();
+            case "m":
+                return vas.getValue() * 1000L * 60L;
+            default:
+                throw new IllegalArgumentException("unknown time suffix");
+        }
+    }
+
+    public static Long parseMemory(String memory) {
+        if (memory.isEmpty()) return null;
+        ValueAndSuffix vas = ValueAndSuffix.parse(memory);
+        if (vas == null) throw new IllegalArgumentException("bad format");
+        switch (vas.getSuffix().toLowerCase()) {
+            case "b":
+                return vas.getValue();
+            case "kb":
+                return vas.getValue() * 1024L;
+            case "k":
+                return vas.getValue() * 1024L;
+            case "":
+                return vas.getValue();
+            case "m":
+                return vas.getValue() * 1024L * 1024L;
+            case "mb":
+                return vas.getValue() * 1024L * 1024L;
+            default:
+                throw new IllegalArgumentException("unknown memory suffix");
+        }
     }
 }
