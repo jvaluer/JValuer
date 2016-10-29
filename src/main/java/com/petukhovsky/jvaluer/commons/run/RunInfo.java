@@ -19,7 +19,7 @@ public class RunInfo {
 
     @JsonCreator
     public RunInfo(@JsonProperty("runVerdict") RunVerdict runVerdict,
-                   @JsonProperty("exitCode") int exitCode,
+                   @JsonProperty("exitCode") long exitCode,
                    @JsonProperty("userTime") long userTime,
                    @JsonProperty("kernelTime") long kernelTime,
                    @JsonProperty("passedTime") long passedTime,
@@ -38,7 +38,7 @@ public class RunInfo {
         return new RunInfo(RunVerdict.CRASH, -1, -1, -1, -1, -1, comment);
     }
 
-    public static RunInfo completed(RunVerdict runVerdict, int exitCode, long userTime, long kernelTime, long passedTime, long consumedMemory, String comment) {
+    public static RunInfo completed(RunVerdict runVerdict, long exitCode, long userTime, long kernelTime, long passedTime, long consumedMemory, String comment) {
         return new RunInfo((exitCode != 0 && runVerdict == RunVerdict.SUCCESS) ? RunVerdict.RUNTIME_ERROR : runVerdict,
                 exitCode,
                 userTime,
