@@ -51,12 +51,12 @@ public class RunLimits {
         return time + " ms";
     }
 
-    public static String memoryString(long memory) {
-        long kb = memory / 1024;
-        long mb = kb / 1024;
-        if (kb < 16) return memory + " B";
-        if (mb < 300) return kb + " KB";
-        return mb + " MiB";
+    public static String memoryString(Long memory) {
+        if (memory == null) return "";
+        double kb = memory / 1024D;
+        double mb = kb / 1024D;
+        if (mb < 1D) return String.format("%.2f KB", kb);
+        return String.format("%.2f MiB", mb);
     }
 
     public static Long parseTime(String time) {
