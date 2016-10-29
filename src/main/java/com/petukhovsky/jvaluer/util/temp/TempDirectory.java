@@ -1,6 +1,7 @@
 package com.petukhovsky.jvaluer.util.temp;
 
 import com.petukhovsky.jvaluer.commons.local.Local;
+import com.petukhovsky.jvaluer.util.FilesUtils;
 import org.apache.commons.io.FileUtils;
 
 import java.io.Closeable;
@@ -23,7 +24,7 @@ public class TempDirectory implements Closeable, AutoCloseable {
     TempDirectory(Path root) throws IOException {
         this.root = root;
         Files.createDirectories(root);
-        Local.chmod777(root);
+        FilesUtils.chmod(root, 777);
     }
 
     public Path getRoot() {
