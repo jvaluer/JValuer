@@ -77,15 +77,11 @@ public class RunInfo {
     }
 
     public String getTimeString() {
-        return getUserTime() + " ms";
+        return RunLimits.timeString(userTime);
     }
 
     public String getMemoryString() {
-        long memory = getConsumedMemory();
-        double kb = memory / 1024D;
-        double mb = kb / 1024D;
-        if (mb < 2D) return String.format("%.2fkb", kb);
-        return String.format("%.2fMB", mb);
+        return RunLimits.memoryString(consumedMemory);
     }
 
     @Override

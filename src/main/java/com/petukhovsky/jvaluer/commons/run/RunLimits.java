@@ -46,8 +46,21 @@ public class RunLimits {
         return new RunLimits(parseTime(time), parseMemory(memory));
     }
 
+    public static String timeString(Long time) {
+        if (time == null) return "";
+        return time + " ms";
+    }
+
+    public static String memoryString(long memory) {
+        long kb = memory / 1024;
+        long mb = kb / 1024;
+        if (kb < 16) return memory + " B";
+        if (mb < 300) return kb + " KB";
+        return mb + " MiB";
+    }
+
     public static Long parseTime(String time) {
-        if (time.isEmpty()) return null;
+        if (time == null || time.isEmpty()) return null;
         ValueAndSuffix vas = ValueAndSuffix.parse(time);
         if (vas == null) throw new IllegalArgumentException("bad format");
         switch (vas.getSuffix().toLowerCase()) {
@@ -65,7 +78,7 @@ public class RunLimits {
     }
 
     public static Long parseMemory(String memory) {
-        if (memory.isEmpty()) return null;
+        if (memory == null || memory.isEmpty()) return null;
         ValueAndSuffix vas = ValueAndSuffix.parse(memory);
         if (vas == null) throw new IllegalArgumentException("bad format");
         switch (vas.getSuffix().toLowerCase()) {
