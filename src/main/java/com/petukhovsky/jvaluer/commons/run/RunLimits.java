@@ -94,6 +94,8 @@ public class RunLimits {
                 return vas.getValue() * 1024L * 1024L;
             case "mb":
                 return vas.getValue() * 1024L * 1024L;
+            case "mib":
+                return vas.getValue() * 1024L * 1024L;
             default:
                 throw new IllegalArgumentException("unknown memory suffix");
         }
