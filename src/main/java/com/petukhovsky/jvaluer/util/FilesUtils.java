@@ -61,7 +61,10 @@ public class FilesUtils {
     public static void chmod(Path path, int mode) {
         if (path == null) return;
         path = path.toAbsolutePath();
-        if (OS.isWindows()) chmodJava(path, mode);
+        if (OS.isWindows()) {
+            chmodJava(path, mode);
+            return;
+        }
         libc().chmod(path.toString(), mode);
     }
 
