@@ -1,6 +1,7 @@
 package com.petukhovsky.jvaluer.commons.compiler;
 
 import com.petukhovsky.jvaluer.commons.local.Local;
+import com.petukhovsky.jvaluer.util.FilesUtils;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -37,12 +38,7 @@ public class RunnableCompiler extends Compiler {
         output = output.toAbsolutePath();
         source = source.toAbsolutePath();
         logger.info("Compile " + source + " to " + output + " with defines = " + Arrays.toString(defines));
-        try {
-            Files.deleteIfExists(output);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new CompilationResult(output, "Access denied", false);
-        }
+        FilesUtils.removeRecursiveForce(output);
         String cmd = exe + " "
                 + pattern.replace("{defines}", defines.length > 0 ? "-D " + String.join(" -D") : "")
                 .replace("{output}", "\"" + output.toString() + "\"")
@@ -56,6 +52,7 @@ public class RunnableCompiler extends Compiler {
             }
             String comment = IOUtils.toString(process.getErrorStream(), "UTF-8");
             comment += IOUtils.toString(process.getInputStream(), "UTF-8");
+            if (Files.exists(output)) FilesUtils.chmod(output, 777);
             return new CompilationResult(output, comment, Files.exists(output));
         } catch (IOException | InterruptedException e) {
             logger.log(Level.SEVERE, "Compilation failed", e);
