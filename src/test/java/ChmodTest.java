@@ -1,6 +1,9 @@
 import com.petukhovsky.jvaluer.util.FilesUtils;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
@@ -8,7 +11,9 @@ import java.nio.file.Paths;
  */
 public class ChmodTest {
     @Test
-    public void test() {
-        FilesUtils.chmod(Paths.get("/tmp/abcd"), 777);
+    public void test() throws IOException {
+        Path tmp = Paths.get("/tmp/x.txt");
+        Files.createFile(tmp);
+        FilesUtils.chmod(tmp, 777);
     }
 }

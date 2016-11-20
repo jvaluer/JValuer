@@ -19,15 +19,16 @@ public class TempTest {
         Path dir = Files.createTempDirectory("");
         TempStorage storage = new TempStorage(dir);
         try (TempDirectory temp = storage.createTempDirectory()) {
-            Path file = temp.resolve("file.ex");
-            ByteArrayInputStream bais = new ByteArrayInputStream("test test string".getBytes());
-            Files.copy(bais, file, StandardCopyOption.REPLACE_EXISTING);
+            Path file = temp.resolve("file.txt");
+            try(ByteArrayInputStream bais = new ByteArrayInputStream("test test string".getBytes())) {
+                Files.copy(bais, file, StandardCopyOption.REPLACE_EXISTING);
+            }
         }
     }
 
     @Test
     public void testUnzip() throws IOException {
-        Path dir = Paths.get("C:\\var\\jvaluer-web\\temp\\");
+        Path dir = Paths.get("/tmp/ziptest/");
         Path zip = Files.createTempFile("", ".zip");
         Local.loadResource(zip, "/test.zip");
         TempStorage storage = new TempStorage(dir);
