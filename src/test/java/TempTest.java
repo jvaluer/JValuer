@@ -15,19 +15,6 @@ import java.nio.file.StandardCopyOption;
  */
 public class TempTest {
     @Test
-    public void testTemp() throws IOException {
-        Path dir = Paths.get("/tmp/temptest/");
-        Files.createDirectories(dir);
-        TempStorage storage = new TempStorage(dir);
-        try (TempDirectory temp = storage.createTempDirectory()) {
-            Path file = temp.resolve("file.txt");
-            try(ByteArrayInputStream bais = new ByteArrayInputStream("test test string".getBytes())) {
-                Files.copy(bais, file, StandardCopyOption.REPLACE_EXISTING);
-            }
-        }
-    }
-
-    @Test
     public void testUnzip() throws IOException {
         Path dir = Paths.get("/tmp/ziptest/");
         Path zip = Files.createTempFile("", ".zip");
