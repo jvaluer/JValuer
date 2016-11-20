@@ -16,7 +16,8 @@ import java.nio.file.StandardCopyOption;
 public class TempTest {
     @Test
     public void testTemp() throws IOException {
-        Path dir = Files.createTempDirectory("");
+        Path dir = Paths.get("/tmp/temptest/");
+        Files.createDirectories(dir);
         TempStorage storage = new TempStorage(dir);
         try (TempDirectory temp = storage.createTempDirectory()) {
             Path file = temp.resolve("file.txt");
