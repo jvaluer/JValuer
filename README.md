@@ -1,1 +1,1 @@
-# jvaluer-commons [![](https://jitpack.io/v/petuhovskiy/jvaluer-commons.svg)](https://jitpack.io/#petuhovskiy/jvaluer-commons)
+# jvaluer-commons [![](https://jitpack.io/v/petuhovskiy/jvaluer-commons.svg)](https://jitpack.io/#petuhovskiy/jvaluer-commons) [![Build Status](https://travis-ci.org/petuhovskiy/jvaluer-commons.svg?branch=master)](https://travis-ci.org/petuhovskiy/jvaluer-commons)
