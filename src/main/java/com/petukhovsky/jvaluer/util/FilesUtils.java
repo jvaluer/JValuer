@@ -73,8 +73,8 @@ public class FilesUtils {
     private static void delete(Path path) {
         if (Files.isDirectory(path)) {
             cleanDirectoryOld(path);
-            try {
-                Files.list(path).forEach(FilesUtils::delete);
+            try (Stream<Path> it = Files.list(path)){
+                it.forEach(FilesUtils::delete);
             } catch (IOException e) {
                 //log.log(Level.WARNING, "", e);
             }
