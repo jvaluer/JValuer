@@ -207,7 +207,7 @@ class RWX {
 
     RWX(int mode) {
         execute = mode % 2 == 1;
-        write = mode % 2 > 1;
+        write = mode % 4 > 1;
         read = mode > 3;
     }
 
