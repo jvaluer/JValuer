@@ -13,7 +13,7 @@ import java.util.Map;
 public class RunOptions {
 
     private final Path folder;
-    private final Path exe;
+    private final String exe;
     private final Path stdinForward;
     private final Path stdoutForward;
     private final Path stderrForward;
@@ -25,7 +25,7 @@ public class RunOptions {
 
     private final Map<String, Object> custom;
 
-    public RunOptions(Path folder, Path exe, Path stdoutForward, Path stderrForward, Path dllInject, boolean trusted, UserAccount userAccount, RunLimits limits, String args, Map<String, Object> custom, Path stdinForward) {
+    public RunOptions(Path folder, String exe, Path stdoutForward, Path stderrForward, Path dllInject, boolean trusted, UserAccount userAccount, RunLimits limits, String args, Map<String, Object> custom, Path stdinForward) {
         if (limits == null) throw new IllegalArgumentException("limits can't be null");
         if (args == null) throw new IllegalArgumentException("args can't be null");
         if (custom == null) throw new IllegalArgumentException("custom args can't be null");
@@ -128,11 +128,11 @@ public class RunOptions {
         return new RunOptions(folder, exe, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom, stdinForward);
     }
 
-    public Path getExe() {
+    public String getExe() {
         return exe;
     }
 
-    public RunOptions setExe(Path exe) {
+    public RunOptions setExe(String exe) {
         return new RunOptions(folder, exe, stdoutForward, stderrForward, dllInject, trusted, userAccount, limits, args, custom, stdinForward);
     }
 
