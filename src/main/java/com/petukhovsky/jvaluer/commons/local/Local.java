@@ -34,7 +34,7 @@ public class Local {
     public static Process execute(String cmd) throws IOException {
         logger.fine("execute " + cmd);
         if (OS.isWindows()) return Runtime.getRuntime().exec(cmd);
-        else return Runtime.getRuntime().exec(new String[]{"bash", "-c", cmd});
+        else return Runtime.getRuntime().exec("bash -c " + cmd);
     }
 
     public static Process execute(String[] cmd) throws IOException {
