@@ -8,5 +8,5 @@ import com.petukhovsky.jvaluer.commons.run.RunOptions;
  * Created by arthur on 14.10.16.
  */
 public interface Invoker {
-    RunInfo run(JValuer jValuer, RunOptions runOptions);
+    RunInfo run(RunOptions runOptions);
 }

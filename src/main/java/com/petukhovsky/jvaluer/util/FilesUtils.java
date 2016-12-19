@@ -55,7 +55,7 @@ public class FilesUtils {
             chmodJava(path, mode);
             return;
         }
-        UnixUtils.libc().chmod(path.toString(), mode);
+        UnixUtils.chmod(path.toString(), mode);
     }
 
     private static void chmodJava(Path path, int mode) {

@@ -17,14 +17,15 @@ import java.util.logging.Logger;
 public class Local {
 
     private static Logger logger = Logger.getLogger(Local.class.getName());
+    private static Runtime runtime = Runtime.getRuntime();
 
-    public static Path loadResource(Path path, String name) {
+    public static Path loadResource(String name, Path copyTo) {
         try {
             try (InputStream is = Local.class.getResourceAsStream(name)) {
-                Files.copy(is, path, StandardCopyOption.REPLACE_EXISTING);
+                Files.copy(is, copyTo, StandardCopyOption.REPLACE_EXISTING);
             }
             logger.info("resource " + name + " was loaded");
-            return path;
+            return copyTo;
         } catch (IOException e) {
             logger.log(Level.SEVERE, "resource " + name + " loading failed", e);
         }
@@ -33,19 +34,11 @@ public class Local {
 
     public static Process execute(String cmd) throws IOException {
         logger.fine("execute " + cmd);
-        if (OS.isWindows()) return Runtime.getRuntime().exec(cmd);
-        else return Runtime.getRuntime().exec(new String[]{"bash", "-c", cmd});
+        return runtime.exec(cmd);
     }
 
     public static Process execute(String[] cmd) throws IOException {
         logger.fine("execute " + Arrays.toString(cmd));
-        if (OS.isWindows()) return Runtime.getRuntime().exec(cmd);
-        else {
-            String[] args = new String[cmd.length + 2];
-            args[0] = "bash";
-            args[1] = "-c";
-            System.arraycopy(cmd, 0, args, 2, cmd.length);
-            return Runtime.getRuntime().exec(args);
-        }
+        return runtime.exec(cmd);
     }
 }

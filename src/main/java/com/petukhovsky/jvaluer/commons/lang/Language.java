@@ -2,7 +2,6 @@ package com.petukhovsky.jvaluer.commons.lang;
 
 import com.petukhovsky.jvaluer.commons.compiler.Compiler;
 import com.petukhovsky.jvaluer.commons.exe.Executable;
-import com.petukhovsky.jvaluer.commons.invoker.DefaultInvoker;
 import com.petukhovsky.jvaluer.commons.invoker.Invoker;
 
 import java.nio.file.Path;

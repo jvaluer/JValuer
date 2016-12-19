@@ -5,6 +5,7 @@ import com.sun.jna.Library;
 import com.sun.jna.Native;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.PosixFilePermission;
@@ -17,44 +18,29 @@ import java.util.Set;
 public class UnixUtils {
     private static CLibrary libc = null;
 
-    public static CLibrary libc() {
+    private static CLibrary libc() {
         if (libc != null) return libc;
         return  libc = (CLibrary) Native.loadLibrary("c", CLibrary.class);
     }
 
     interface CLibrary extends Library {
-        public int chmod(String path, int mode);
+        int chmod(String path, int mode);
     }
 
-    @Deprecated
-    private static void chmod777Unix(Path executable) throws IOException {
-        Set<PosixFilePermission> perms = new HashSet<>();
-        //add owners permission
-        perms.add(PosixFilePermission.OWNER_READ);
-        perms.add(PosixFilePermission.OWNER_WRITE);
-        perms.add(PosixFilePermission.OWNER_EXECUTE);
-        //add group permissions
-        perms.add(PosixFilePermission.GROUP_READ);
-        perms.add(PosixFilePermission.GROUP_WRITE);
-        perms.add(PosixFilePermission.GROUP_EXECUTE);
-        //add others permissions
-        perms.add(PosixFilePermission.OTHERS_READ);
-        perms.add(PosixFilePermission.OTHERS_WRITE);
-        perms.add(PosixFilePermission.OTHERS_EXECUTE);
-        Files.setPosixFilePermissions(executable, perms);
+    public static int chmod(String path, int mode) {
+        return libc().chmod(path, mode);
     }
 
-    /**
-     * Works too well, but also kill current java program as side effect
-     * @param path path to file
-     */
-    private static void killProcessesByPath(Path path) {
-        if (!OS.isUnix()) return;
-        String cmd = String.format("lsof | grep %s | awk '{print $2}' | xargs kill -9", path.toAbsolutePath().toString());
-        try {
-            Runtime.getRuntime().exec(new String[]{"/bin/bash", "-c", cmd}).waitFor();
-        } catch (InterruptedException | IOException e) {
-            //e.printStackTrace();
+    public static String getPid(Process process) {
+        if (process.getClass().getName().equals("java.lang.UNIXProcess")) {
+            try {
+                Field f = process.getClass().getDeclaredField("pid");
+                f.setAccessible(true);
+                return "" + f.getInt(process);
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
+        return null;
     }
 }

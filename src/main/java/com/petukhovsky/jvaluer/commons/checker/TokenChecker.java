@@ -1,8 +1,8 @@
 package com.petukhovsky.jvaluer.commons.checker;
 
 import com.petukhovsky.jvaluer.commons.data.TestData;
-import com.petukhovsky.jvaluer.util.FastScanner;
-import com.petukhovsky.jvaluer.util.TruncateUtils;
+import com.petukhovsky.jvaluer.util.io.FastScanner;
+import com.petukhovsky.jvaluer.util.string.StringUtils;
 
 import java.util.Objects;
 
@@ -23,8 +23,8 @@ public class TokenChecker extends Checker {
             String answerString = answerScanner.next();
             String outString = outScanner.next();
             if (!Objects.equals(answerString, outString)) {
-                if (outString == null) comment = "Expected " + TruncateUtils.truncate(answerString, 10) + " but reached end of file";
-                else if (answerString == null) comment = "Expected end of file, but read " + TruncateUtils.truncate(outString, 10);
+                if (outString == null) comment = "Expected " + StringUtils.truncate(answerString, 10) + " but reached end of file";
+                else if (answerString == null) comment = "Expected end of file, but read " + StringUtils.truncate(outString, 10);
                 else comment = "Expected " + answerString + " but read " + outString;
                 break;
             }

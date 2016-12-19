@@ -5,35 +5,35 @@ import java.util.Optional;
 /**
  * Created by Arthur Petukhovsky on 5/21/2016.
  */
-public class OSRelatedValue<T> {
+public class OSValue<T> {
 
     private Optional<T> value;
 
-    public OSRelatedValue() {
+    public OSValue() {
         value = Optional.empty();
     }
 
-    public OSRelatedValue<T> windows(T value) {
+    public OSValue<T> windows(T value) {
         if (OS.isWindows()) this.value = Optional.of(value);
         return this;
     }
 
-    public OSRelatedValue<T> windows32(T value) {
+    public OSValue<T> windows32(T value) {
         if (OS.isWindows() && !OS.is64Bit()) this.value = Optional.of(value);
         return this;
     }
 
-    public OSRelatedValue<T> windows64(T value) {
+    public OSValue<T> windows64(T value) {
         if (OS.isWindows() && OS.is64Bit()) this.value = Optional.of(value);
         return this;
     }
 
-    public OSRelatedValue<T> unix(T value) {
+    public OSValue<T> unix(T value) {
         if (OS.isUnix()) this.value = Optional.of(value);
         return this;
     }
 
-    public OSRelatedValue<T> osx(T value) {
+    public OSValue<T> osx(T value) {
         if (OS.isOSX()) this.value = Optional.of(value);
         return this;
     }

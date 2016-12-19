@@ -18,15 +18,9 @@ import java.nio.file.attribute.FileAttribute;
  */
 public interface JValuer {
     Path loadResource(String name, String resource);
-    void cleanTemp();
-    Path createTempFile(String prefix, String suffix, FileAttribute<?>... attrs);
-    Path createTempExe();
-    Path createTempDir();
     CompilationResult compile(Language language, Path source, String... defines);
     CompilationResult compile(Compiler compiler, Path source, String... defines);
     CompilationResult compile(Source source, String... defines);
     Languages getLanguages();
-    RunInfo invokeDefault(RunOptions options);
-    RunInfo invoke(Invoker invoker, RunOptions options);
     JValuerBuiltin builtin();
 }

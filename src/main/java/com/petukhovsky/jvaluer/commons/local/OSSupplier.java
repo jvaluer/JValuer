@@ -5,35 +5,35 @@ import java.util.function.Supplier;
 /**
  * Created by Arthur Petukhovsky on 5/21/2016.
  */
-public class OSRelatedSupplier<T> {
+public class OSSupplier<T> {
 
-    private OSRelatedValue<Supplier<T>> value;
+    private OSValue<Supplier<T>> value;
 
-    public OSRelatedSupplier() {
-        value = new OSRelatedValue<>();
+    public OSSupplier() {
+        value = new OSValue<>();
     }
 
-    public OSRelatedSupplier<T> windows(Supplier<T> supplier) {
+    public OSSupplier<T> windows(Supplier<T> supplier) {
         value.windows(supplier);
         return this;
     }
 
-    public OSRelatedSupplier<T> windows32(Supplier<T> supplier) {
+    public OSSupplier<T> windows32(Supplier<T> supplier) {
         value.windows32(supplier);
         return this;
     }
 
-    public OSRelatedSupplier<T> windows64(Supplier<T> supplier) {
+    public OSSupplier<T> windows64(Supplier<T> supplier) {
         value.windows64(supplier);
         return this;
     }
 
-    public OSRelatedSupplier<T> unix(Supplier<T> supplier) {
+    public OSSupplier<T> unix(Supplier<T> supplier) {
         value.unix(supplier);
         return this;
     }
 
-    public OSRelatedSupplier<T> osx(Supplier<T> supplier) {
+    public OSSupplier<T> osx(Supplier<T> supplier) {
         value.osx(supplier);
         return this;
     }
