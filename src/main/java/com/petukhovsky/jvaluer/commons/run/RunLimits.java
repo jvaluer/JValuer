@@ -1,11 +1,6 @@
 package com.petukhovsky.jvaluer.commons.run;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.petukhovsky.jvaluer.util.string.ValueAndSuffix;
-
-import java.text.ParseException;
-import java.util.Objects;
 
 /**
  * Created by Arthur Petukhovsky on 7/3/2016.
@@ -14,8 +9,7 @@ public class RunLimits {
     private final Long time;
     private final Long memory;
 
-    @JsonCreator
-    public RunLimits(@JsonProperty("time") Long time, @JsonProperty("memory") Long memory) {
+    public RunLimits(Long time, Long memory) {
         if (time != null && time < 0) throw new IllegalArgumentException("Time can't be negative");
         if (memory != null && memory < 0) throw new IllegalArgumentException("Memory can't be negative");
         this.time = time;
@@ -28,6 +22,22 @@ public class RunLimits {
 
     public Long getMemory() {
         return memory;
+    }
+
+    public RunLimits withTime(Long time) {
+        return new RunLimits(time, memory);
+    }
+
+    public RunLimits withTime(String time) {
+        return new RunLimits(parseTime(time), memory);
+    }
+
+    public RunLimits withMemory(Long memory) {
+        return new RunLimits(time, memory);
+    }
+
+    public RunLimits withMemory(String memory) {
+        return new RunLimits(time, parseMemory(memory));
     }
 
     public static RunLimits ofMemory(Long memory) {

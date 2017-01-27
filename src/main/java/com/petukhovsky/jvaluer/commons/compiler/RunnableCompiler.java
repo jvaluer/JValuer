@@ -1,7 +1,7 @@
 package com.petukhovsky.jvaluer.commons.compiler;
 
-import com.petukhovsky.jvaluer.commons.local.Local;
-import com.petukhovsky.jvaluer.util.FilesUtils;
+import com.petukhovsky.jvaluer.util.Local;
+import com.petukhovsky.jvaluer.util.fs.FilesUtils;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;

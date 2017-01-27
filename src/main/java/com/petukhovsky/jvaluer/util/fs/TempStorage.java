@@ -1,6 +1,6 @@
-package com.petukhovsky.jvaluer.util;
+package com.petukhovsky.jvaluer.util.fs;
 
-import com.petukhovsky.jvaluer.commons.local.OSValue;
+import com.petukhovsky.jvaluer.util.os.OSValue;
 
 import java.io.IOException;
 import java.nio.file.Files;

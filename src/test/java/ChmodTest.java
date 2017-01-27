@@ -1,4 +1,4 @@
-import com.petukhovsky.jvaluer.util.FilesUtils;
+import com.petukhovsky.jvaluer.util.fs.FilesUtils;
 import org.junit.Test;
 
 import java.io.IOException;

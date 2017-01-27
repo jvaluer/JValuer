@@ -1,6 +1,6 @@
 package com.petukhovsky.jvaluer.commons.lang;
 
-import com.petukhovsky.jvaluer.commons.source.Source;
+import com.petukhovsky.jvaluer.commons.source.LocalSource;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -12,6 +12,6 @@ public interface Languages {
     Language findByExtension(String ext);
     Language findByName(String name);
     Language findByPath(Path path);
-    Source autoSource(Path source);
+    LocalSource autoSource(Path source);
     List<Language> getAll();
 }

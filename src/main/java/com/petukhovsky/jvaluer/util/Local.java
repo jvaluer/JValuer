@@ -1,13 +1,11 @@
-package com.petukhovsky.jvaluer.commons.local;
+package com.petukhovsky.jvaluer.util;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.nio.file.attribute.*;
-import java.util.*;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

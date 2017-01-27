@@ -1,5 +1,5 @@
-import com.petukhovsky.jvaluer.commons.local.Local;
-import com.petukhovsky.jvaluer.util.TempStorage;
+import com.petukhovsky.jvaluer.util.Local;
+import com.petukhovsky.jvaluer.util.fs.TempStorage;
 import org.junit.Test;
 
 import java.io.IOException;

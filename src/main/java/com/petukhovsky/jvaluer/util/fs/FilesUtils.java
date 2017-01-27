@@ -1,17 +1,14 @@
-package com.petukhovsky.jvaluer.util;
+package com.petukhovsky.jvaluer.util.fs;
 
-import com.petukhovsky.jvaluer.commons.local.OS;
+import com.petukhovsky.jvaluer.util.UnixUtils;
+import com.petukhovsky.jvaluer.util.os.OS;
 import org.apache.commons.io.FileDeleteStrategy;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
-import java.nio.file.attribute.*;
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.Set;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;

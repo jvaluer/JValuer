@@ -1,5 +1,5 @@
-import com.petukhovsky.jvaluer.commons.local.OS;
-import com.petukhovsky.jvaluer.util.FilesUtils;
+import com.petukhovsky.jvaluer.util.fs.FilesUtils;
+import com.petukhovsky.jvaluer.util.os.OS;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 

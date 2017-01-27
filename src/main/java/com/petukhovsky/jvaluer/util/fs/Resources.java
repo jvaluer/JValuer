@@ -1,4 +1,4 @@
-package com.petukhovsky.jvaluer.commons.local;
+package com.petukhovsky.jvaluer.util.fs;
 
 import java.nio.file.Path;
 

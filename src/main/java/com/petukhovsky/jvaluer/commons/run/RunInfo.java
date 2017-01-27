@@ -1,55 +1,51 @@
 package com.petukhovsky.jvaluer.commons.run;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.petukhovsky.jvaluer.commons.msg.Verdict;
+import com.petukhovsky.jvaluer.commons.msg.VerdictLabel;
 
 /**
  * Created by Arthur on 12/18/2015.
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class RunInfo {
-    private final RunVerdict runVerdict;
+    private final Verdict verdict;
     private final long exitCode;
     private final long userTime;
     private final long kernelTime;
     private final long passedTime;
     private final long consumedMemory;
-    private final String comment;
 
-    @JsonCreator
-    public RunInfo(@JsonProperty("runVerdict") RunVerdict runVerdict,
-                   @JsonProperty("exitCode") long exitCode,
-                   @JsonProperty("userTime") long userTime,
-                   @JsonProperty("kernelTime") long kernelTime,
-                   @JsonProperty("passedTime") long passedTime,
-                   @JsonProperty("consumedMemory") long consumedMemory,
-                   @JsonProperty("comment") String comment) {
-        this.runVerdict = runVerdict;
+    public RunInfo(Verdict verdict,
+                   long exitCode,
+                   long userTime,
+                   long kernelTime,
+                   long passedTime,
+                   long consumedMemory
+    ) {
+        this.verdict = verdict;
         this.exitCode = exitCode;
         this.userTime = userTime;
         this.kernelTime = kernelTime;
         this.passedTime = passedTime;
         this.consumedMemory = consumedMemory;
-        this.comment = comment;
     }
 
     public static RunInfo crashed(String comment) {
-        return new RunInfo(RunVerdict.CRASH, -1, -1, -1, -1, -1, comment);
+        return new RunInfo(new Verdict(VerdictLabel.CRASHED, comment), -1, -1, -1, -1, -1);
     }
 
-    public static RunInfo completed(RunVerdict runVerdict, long exitCode, long userTime, long kernelTime, long passedTime, long consumedMemory, String comment) {
-        return new RunInfo((exitCode != 0 && runVerdict == RunVerdict.SUCCESS) ? RunVerdict.RUNTIME_ERROR : runVerdict,
+    public static RunInfo completed(Verdict verdict, long exitCode, long userTime, long kernelTime, long passedTime, long consumedMemory) {
+        return new RunInfo(
+                verdict,
                 exitCode,
                 userTime,
                 kernelTime,
                 passedTime,
-                consumedMemory,
-                comment);
+                consumedMemory
+        );
     }
 
-    public RunVerdict getRunVerdict() {
-        return runVerdict;
+    public Verdict getVerdict() {
+        return verdict;
     }
 
     public long getExitCode() {
@@ -73,7 +69,7 @@ public class RunInfo {
     }
 
     public String getComment() {
-        return comment;
+        return verdict.getComment();
     }
 
     public String getTimeString() {
@@ -86,7 +82,7 @@ public class RunInfo {
 
     @Override
     public String toString() {
-        return runVerdict + " (" + this.getTimeString() + ", " + this.getMemoryString() + ") " + this.getComment() +
+        return verdict + " (" + this.getTimeString() + ", " + this.getMemoryString() + ") " + this.getComment() +
                 (this.getExitCode() != 0 ? " [exitcode: " + this.getExitCode() + "]" : "");
     }
 }

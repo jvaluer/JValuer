@@ -7,11 +7,11 @@ import java.nio.file.Path;
 /**
  * Created by arthur on 14.10.16.
  */
-public class Source {
+public class LocalSource {
     private final Path path;
     private final Language language;
 
-    public Source(Path path, Language language) {
+    public LocalSource(Path path, Language language) {
         this.path = path;
         this.language = language;
     }

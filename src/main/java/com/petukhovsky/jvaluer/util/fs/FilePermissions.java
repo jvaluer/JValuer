@@ -1,4 +1,4 @@
-package com.petukhovsky.jvaluer.util;
+package com.petukhovsky.jvaluer.util.fs;
 
 /**
  * Created by petuh on 22.11.2016.
